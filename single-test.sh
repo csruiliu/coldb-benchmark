@@ -86,9 +86,11 @@ echo -e "****************************************************************\n"
 TS=`date +%Y%m%d-%H%M%S`
 OUTPUT_DIR=${RESULT_DIR}/${STU_NAME}/test${TEST_ID}.${TS}
 
+
 echo "Starting server for tests"
 #Now this is the first time we start the server
 mkdir ${OUTPUT_DIR}
+
 ${SERVER} 2>> ${OUTPUT_DIR}/server.err 1>> ${OUTPUT_DIR}/server.out & SERVER_PID=$!
 echo "Server Process: ${SERVER_PID}"
 sleep ${SLEEP_SERVER}

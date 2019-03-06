@@ -1,8 +1,4 @@
 #! /bin/bash
-#echo "DO NOT RUN - under refactoring"
-# ENV=`env`
-# echo -e "pull_run_compile.sh is in maintenace mode (ppid=$PPID).\n ENV:\n$ENV " | mail -s "Maintenance Notice" manos@cs.uchicago.edu, kester@cs.uchicago.edu;
-# exit
 
 trap "echo; echo SIGINT/SIGTERM detected. Exiting ...; exit;" SIGINT SIGTERM
 
@@ -16,7 +12,6 @@ TEST_DIR="/home/rui/Development/coldb-benchmark/project-tests"
 PROJECT_DIR="/home/rui/Development/coldb-benchmark/stu-projects"
 RESULT_DIR="/home/rui/Development/coldb-benchmark/test-results"
 
-#Sleep times after server is enabled
 SLEEP_SERVER=2
 SLEEP_TEST=1
 
@@ -25,20 +20,12 @@ MAX_TEST=09
 CUR_TEST_ID=01
 TEST_IDS=`seq -w 1 ${MAX_TEST}`
 
-# Variables for formatting
-RED="\x1b[31m"
-GRN="\x1b[32m"
-RST="\x1b[0m"
-GREEN_OK="[${GRN}ok${RST}]"
-RED_FAIL="[${RED}FAIL${RST}]"
-
 ##########################################
 # Testing Processing
 ##########################################
 
 echo "Test" $TEST_IDS "will launch"
- 
-#-e will handle special character 
+
 echo -e "\n****************************************************************"
 echo -e "* Compiling  "
 echo -e "****************************************************************\n"
