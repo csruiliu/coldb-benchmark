@@ -85,7 +85,7 @@ else
    DIFF=`diff -B -w -y ${CUR_READY_FILE} ${TEST_DIR}/test${TEST_ID}.exp`
    if [ -z "${DIFF}" ]
    then
-        echo "test${TEST_ID} passed" >> ${RESULT_DIR}/${TS}.txt
+        echo "test${TEST_ID} passed, Time(ns): ${TEST_DUR}" >> ${RESULT_DIR}/${TS}.txt
    else
         echo "test${TEST_ID} failed" >> ${RESULT_DIR}/${TS}.txt
    fi
