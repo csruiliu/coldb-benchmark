@@ -76,7 +76,7 @@ if [ "${TEST_ID}" -eq 01 ] || [ "${TEST_ID}" -eq 02 ] || [ "${TEST_ID}" -eq 10 ]
 then
    if [[ ! -s ${OUTPUT_DIR}/test${TEST_ID}-server.err ]]
    then
-       echo "test${TEST_ID} passed" >> ${RESULT_DIR}/${TS}.txt
+       echo "test${TEST_ID} passed, Time(ns): ${TEST_DUR}" >> ${RESULT_DIR}/${TS}.txt
    else
        echo "test${TEST_ID} failed" >> ${RESULT_DIR}/${TS}.txt
    fi
