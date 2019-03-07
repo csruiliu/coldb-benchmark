@@ -58,6 +58,7 @@ do
     if [ ! -d "${PROJECT_BASE}/${CUR_STU_NAME}" ]
     then 
         rm -rf ${PROJECT_BASE}/${CUR_STU_NAME}
+        git clone ${GIT_URL}/${CUR_STU_NAME}.git
     else
         # clone the project
         git clone ${GIT_URL}/${CUR_STU_NAME}.git
