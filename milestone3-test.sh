@@ -20,8 +20,9 @@ TEST_IDS=`seq -w ${MIN_TEST} ${MAX_TEST}`
 
 #this is the timestamp of the whole trial
 TS=`date +%Y%m%d-%H%M%S`
-echo "Test at ${TS}" > ${RESULT_DIR}/${TS}.txt
-echo "Test at ${TS}" > ${RESULT_DIR}/latest.txt
+TSR=`date +%Y.%m.%d-%H:%M:%S`
+echo "Test at ${TSR}" > ${RESULT_DIR}/${TS}.txt
+echo "Test at ${TSR}" > ${RESULT_DIR}/latest.txt
 
 while read line
 do
