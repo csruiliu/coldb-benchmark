@@ -39,6 +39,13 @@ else
     echo "The folder for test results exists, continue..."
 fi
 
+if [ ! -f "${RESULT_DIR}/latest.txt" ]; then
+    touch "${RESULT_DIR}/latest.txt"
+else
+    rm "${RESULT_DIR}/latest.txt"
+    touch ${RESULT_DIR}/latest.txt
+fi
+
 # enter the folder
 cd ${PROJECT_BASE}
 
@@ -48,8 +55,13 @@ do
     CUR_STU_NAME=${line%%/*}
     echo "fetch the project for current student is ${CUR_STU_NAME}"
 
-    # clone the project
-    git clone ${GIT_URL}/${CUR_STU_NAME}.git
+    if [ ! -d "${PROJECT_BASE}/${CUR_STU_NAME}" ]
+    then 
+        rm -rf ${PROJECT_BASE}/${CUR_STU_NAME}
+    else
+        # clone the project
+        git clone ${GIT_URL}/${CUR_STU_NAME}.git
+    fi
 
     if [ ! -d "${RESULT_DIR}/${CUR_STU_NAME}" ]
     then
