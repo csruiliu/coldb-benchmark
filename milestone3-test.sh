@@ -21,16 +21,18 @@ TEST_IDS=`seq -w ${MIN_TEST} ${MAX_TEST}`
 #this is the timestamp of the whole trial
 TS=`date +%Y%m%d-%H%M%S`
 echo "Test at ${TS}" > ${RESULT_DIR}/${TS}.txt
-
+echo "Test at ${TS}" > ${RESULT_DIR}/latest.txt
 
 while read line
 do
     #echo "Student ${STUDENT_NO}: $line"
 
     CUR_STU_NAME=${line%%/*}
-    CUR_STU_SRC=${line%@*}
+    CUR_STU_SRC=${line%%:*}
+    CUR_STU_CODE=${line##*:}
     echo "Current student is ${CUR_STU_NAME}"
-    echo "student name: ${CUR_STU_NAME}" >> ${RESULT_DIR}/${TS}.txt
+    echo "student code: ${CUR_STU_CODE}" >> ${RESULT_DIR}/${TS}.txt
+    echo "student code: ${CUR_STU_CODE}" >> ${RESULT_DIR}/latest.txt
     echo "Current student src code is at ${PROJECT_BASE}/${CUR_STU_SRC}"
 
     cd ${PROJECT_BASE}/${CUR_STU_SRC}
