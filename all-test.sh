@@ -33,7 +33,6 @@ do
     CUR_STU_CODE=${line##*:}
     echo "Current student is ${CUR_STU_NAME}"
     echo "student name: ${CUR_STU_CODE}" >> ${RESULT_DIR}/${TS}.txt
-    echo "student name: ${CUR_STU_CODE}" >> ${RESULT_DIR}/latest.txt
     echo "Current student src code is at ${PROJECT_BASE}/${CUR_STU_SRC}"
 
     cd ${PROJECT_BASE}/${CUR_STU_SRC}
@@ -62,11 +61,10 @@ do
         ${ROOT_DIR}/single-test.sh ${CUR_STU_NAME} ${CUR_STU_SRC} ${CUR_TEST_ID} ${MS} ${TS} ${PROJECT_BASE} ${TEST_DIR} ${RESULT_DIR}
     done
 
-
-
 done < ${STUSRC_FILE}
 
-
+cp ${RESULT_DIR}/${TS}.txt ${RESULT_DIR}/latest.txt
+echo "make a file for latest results"
 
 
 
