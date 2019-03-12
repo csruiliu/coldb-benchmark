@@ -39,11 +39,8 @@ else
     echo "The folder for test results exists, continue..."
 fi
 
-if [ ! -f "${RESULT_DIR}/latest.txt" ]; then
-    touch "${RESULT_DIR}/latest.txt"
-else
+if [ -f "${RESULT_DIR}/latest.txt" ]; then
     rm "${RESULT_DIR}/latest.txt"
-    touch ${RESULT_DIR}/latest.txt
 fi
 
 # enter the folder

@@ -77,10 +77,8 @@ then
    if [[ ! -s ${OUTPUT_DIR}/test${TEST_ID}-server.err ]]
    then
        echo "test${TEST_ID} passed, Time(ns): ${TEST_DUR}" >> ${RESULT_DIR}/${TS}.txt
-       echo "test${TEST_ID} passed, Time(ns): ${TEST_DUR}" >> ${RESULT_DIR}/latest.txt
    else
        echo "test${TEST_ID} failed" >> ${RESULT_DIR}/${TS}.txt
-       echo "test${TEST_ID} failed" >> ${RESULT_DIR}/latest.txt
    fi
 else
    sed -r 's/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g' ${OUTPUT_DIR}/test${TEST_ID}-server.out | sed -r '/[a-zA-Z~\s!@#$%\^\+\*&\\\/\?\|:<>{}();="]/d' | sed "/--/d" | sed '/^$/d' > ${CUR_READY_FILE}
@@ -88,10 +86,8 @@ else
    if [ -z "${DIFF}" ]
    then
         echo "test${TEST_ID} passed, Time(ns): ${TEST_DUR}" >> ${RESULT_DIR}/${TS}.txt
-        echo "test${TEST_ID} passed, Time(ns): ${TEST_DUR}" >> ${RESULT_DIR}/latest.txt
    else
         echo "test${TEST_ID} failed" >> ${RESULT_DIR}/${TS}.txt
-        echo "test${TEST_ID} failed" >> ${RESULT_DIR}/latest.txt
    fi
 fi
 

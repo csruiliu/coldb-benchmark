@@ -22,7 +22,6 @@ TEST_IDS=`seq -w ${MIN_TEST} ${MAX_TEST}`
 TS=`date +%Y%m%d-%H%M%S`
 TSR=`date +%Y.%m.%d-%H:%M:%S`
 echo "Test at ${TSR}" > ${RESULT_DIR}/${TS}.txt
-echo "Test at ${TSR}" > ${RESULT_DIR}/latest.txt
 
 while read line
 do
@@ -33,7 +32,6 @@ do
     CUR_STU_CODE=${line##*:}
     echo "Current student is ${CUR_STU_NAME}"
     echo "student code: ${CUR_STU_CODE}" >> ${RESULT_DIR}/${TS}.txt
-    echo "student code: ${CUR_STU_CODE}" >> ${RESULT_DIR}/latest.txt
     echo "Current student src code is at ${PROJECT_BASE}/${CUR_STU_SRC}"
 
     cd ${PROJECT_BASE}/${CUR_STU_SRC}
@@ -61,15 +59,7 @@ do
     do
         ${ROOT_DIR}/single-test.sh ${CUR_STU_NAME} ${CUR_STU_SRC} ${CUR_TEST_ID} ${MS} ${TS} ${PROJECT_BASE} ${TEST_DIR} ${RESULT_DIR}
     done
-
-
-
 done < ${STUSRC_FILE}
-
-
-
-
-
 
 
 
