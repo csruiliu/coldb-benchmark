@@ -22,7 +22,6 @@ TEST_IDS=`seq -w ${MIN_TEST} ${MAX_TEST}`
 TS=`date +%Y%m%d-%H%M%S`
 TSR=`date +%Y.%m.%d-%H:%M:%S`
 echo "Test at ${TSR}" > ${RESULT_DIR}/${TS}.txt
-echo "Test at ${TSR}" > ${RESULT_DIR}/latest.txt
 
 while read line
 do
