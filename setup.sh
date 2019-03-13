@@ -15,13 +15,13 @@ then
     RET=$?
     if [ ${RET} -eq 0 ]
     then
-        echo "Create folder for all student projects successfully."
+        echo "Create folder for all test results successfully."
     else
-        echo "Fail to create the folder for student projects."
+        echo "Fail to create the folder for test results."
         exit 0
     fi
 else
-    echo "The folder for student projects exists, continue..."
+    echo "The folder for test results exists, continue..."
 fi
 
 if [ ! -d "${PROJECT_BASE}" ]
@@ -30,13 +30,23 @@ then
     RET=$?
     if [ ${RET} -eq 0 ]
     then
-        echo "Create folder for all test results successfully."
+        echo "Create folder for all student projects successfully."
     else
-        echo "Fail to create the folder for test results."
+        echo "Fail to create the folder for student projects."
         exit 0
     fi
 else
-    echo "The folder for test results exists, continue..."
+    echo "The folder for student projects exists, remove all and re-fetch all project..."
+    rm -rf ${PROJECT_BASE}
+    mkdir ${PROJECT_BASE}
+    RET=$?
+    if [ ${RET} -eq 0 ]
+    then
+        echo "Create folder for all student projects successfully."
+    else
+        echo "Fail to create the folder for student projects."
+        exit 0
+    fi
 fi
 
 if [ -f "${RESULT_DIR}/latest.txt" ]; then
