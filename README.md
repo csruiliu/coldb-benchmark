@@ -7,6 +7,8 @@ Put the source code path of students' projects into `stupath.txt`, line by line.
 
 Configure the file config.ini
 
+Change the path of loading data in test files.
+
 ### Test ###
 
 milestoneX-test.sh: run all the tests in milestone X, the results are in `stu-results`, each student will have individual folder.
