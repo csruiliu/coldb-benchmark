@@ -62,7 +62,7 @@ TEST_START_TIME=$(date "+%s%N")
 echo "${CLIENT} < ${TEST_DIR}/test${TEST_ID}.dsl"
 
 
-${CLIENT} < ${TEST_DIR}/test${TEST_ID}.dsl 2>> ${OUTPUT_DIR}/test${TEST_ID}-server.err 1>> ${OUTPUT_DIR}/test${TEST_ID}-server.out
+${CLIENT} < ${TEST_DIR}/test${TEST_ID}.dsl 2>> ${OUTPUT_DIR}/test${TEST_ID}-server.err 1>> ${OUTPUT_DIR}/test${TEST_ID}-client.out
 RET_CODE=$?
 echo "client return with code ${RET_CODE}"
 TEST_DUR=$(($(date "+%s%N") - $TEST_START_TIME))
@@ -70,7 +70,7 @@ echo "Time: ${TEST_DUR}" >> ${OUTPUT_DIR}/test${TEST_ID}-server.time
 
 echo "Test is finished"
 
-CUR_READY_FILE=${OUTPUT_DIR}/test${TEST_ID}-server-ready.out
+CUR_READY_FILE=${OUTPUT_DIR}/test${TEST_ID}-ready.out
 
 if [ "${TEST_ID}" -eq 01 ] || [ "${TEST_ID}" -eq 02 ] || [ "${TEST_ID}" -eq 10 ] || [ "${TEST_ID}" -eq 19 ] || [ "${TEST_ID}" -eq 20 ] || [ "${TEST_ID}" -eq 30 ]
 then
@@ -81,8 +81,8 @@ then
        echo "test${TEST_ID} failed" >> ${RESULT_DIR}/${TS}.txt
    fi
 else
-   sed -r 's/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g' ${OUTPUT_DIR}/test${TEST_ID}-server.out | sed -r '/[a-zA-Z~\s!@#$%\^\+\*&\\\/\?\|:<>{}();="]/d' | sed "/--/d" | sed '/^$/d' > ${CUR_READY_FILE}
-   DIFF=`diff -B -w -y ${CUR_READY_FILE} ${TEST_DIR}/test${TEST_ID}.exp`
+   sed -r 's/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g' ${OUTPUT_DIR}/test${TEST_ID}-client.out | sed -r '/[a-zA-Z~\s!@#$%\^\+\*&\\\/\?\|:<>{}();="]/d' | sed "/--/d" | sed '/^$/d' > ${CUR_READY_FILE}
+   DIFF=`diff -B -w ${CUR_READY_FILE} ${TEST_DIR}/test${TEST_ID}.exp`
    if [ -z "${DIFF}" ]
    then
         echo "test${TEST_ID} passed, Time(ns): ${TEST_DUR}" >> ${RESULT_DIR}/${TS}.txt
