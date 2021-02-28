@@ -53,23 +53,19 @@ if [ -f "${RESULT_DIR}/latest.txt" ]; then
     rm "${RESULT_DIR}/latest.txt"
 fi
 
-# enter the folder
-cd ${PROJECT_BASE}
-
 while read line
 do
     #echo "Student ${STUDENT_NO}: $line"
     CUR_STU_NAME=${line%%/*}
     echo "fetch the project for current student is ${CUR_STU_NAME}"
 
-    if [ ! -d "${PROJECT_BASE}/${CUR_STU_NAME}" ]
+    if [ -d "${PROJECT_BASE}/${CUR_STU_NAME}" ]
     then 
         rm -rf ${PROJECT_BASE}/${CUR_STU_NAME}
-        git clone ${GIT_URL}/${CUR_STU_NAME}.git
-    else
-        # clone the project
-        git clone ${GIT_URL}/${CUR_STU_NAME}.git
     fi
+
+    # clone the project
+    git clone ${GIT_URL}/${CUR_STU_NAME}.git ${PROJECT_BASE}/${CUR_STU_NAME}
 
     if [ ! -d "${RESULT_DIR}/${CUR_STU_NAME}" ]
     then
